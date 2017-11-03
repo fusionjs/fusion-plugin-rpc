@@ -28,7 +28,7 @@ export default (
         const methods = serializedHandlerNames;
         methods.forEach(key => {
           this[key] = args => {
-            // TODO handle args instanceof FormData
+            // TODO(#3) handle args instanceof FormData
             return fetch(`${prefix}/api/${key}`, {
               method: 'POST',
               headers: {

@@ -18,7 +18,7 @@ export default ({handlers = {}, EventEmitter}) => {
         for (const key in handlers) {
           if (typeof handlers[key] === 'function') {
             this[key] = async args => {
-              // TODO: add timing events here
+              // TODO(#4): add timing events here
               return handlers[key](args);
             };
           }

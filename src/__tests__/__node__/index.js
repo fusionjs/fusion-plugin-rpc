@@ -6,7 +6,7 @@ test('requires ctx', t => {
   const emitter = {
     emit() {},
     from() {
-      return this
+      return this;
     },
   };
   const rpc = RPC({handlers, emitter});
@@ -35,7 +35,7 @@ test('request api', async t => {
       t.equal(typeof payload.timing, 'number');
     },
     from() {
-      return this
+      return this;
     },
   };
 
@@ -72,7 +72,7 @@ test('request api with failing request', async t => {
       t.equal(payload.error, e);
     },
     from() {
-      return this
+      return this;
     },
   };
 
@@ -103,7 +103,7 @@ test('request api with invalid endpoint', async t => {
       t.equal(payload.error.message, 'Missing RPC handler for test');
     },
     from() {
-      return this
+      return this;
     },
   };
 
@@ -148,7 +148,7 @@ test('middleware - invalid endpoint', async t => {
       );
     },
     from() {
-      return this
+      return this;
     },
   };
 
@@ -193,7 +193,7 @@ test('middleware - valid endpoint', async t => {
       t.equal(typeof payload.timing, 'number');
     },
     from() {
-      return this
+      return this;
     },
   };
 
@@ -239,7 +239,7 @@ test('middleware - valid endpoint failure', async t => {
       t.equal(payload.error, e);
     },
     from() {
-      return this
+      return this;
     },
   };
 

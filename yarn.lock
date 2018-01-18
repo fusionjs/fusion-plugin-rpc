@@ -2273,9 +2273,9 @@ fusion-core@0.3.0-2:
     node-mocks-http "^1.6.6"
     toposort "^1.0.6"
 
-fusion-plugin-universal-events@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/fusion-plugin-universal-events/-/fusion-plugin-universal-events-0.2.0.tgz#40e5c940c43860f055e15e93bbf667dd497303d4"
+fusion-plugin-universal-events@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/fusion-plugin-universal-events/-/fusion-plugin-universal-events-0.3.0.tgz#fb88370679b36ae70a6140ac89f84a1e2009ddd1"
   dependencies:
     koa-bodyparser "4.2.0"
 

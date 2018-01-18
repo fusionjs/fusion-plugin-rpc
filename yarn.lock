@@ -2279,9 +2279,9 @@ fusion-plugin-universal-events@0.2.0:
   dependencies:
     koa-bodyparser "4.2.0"
 
-fusion-tokens@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/fusion-tokens/-/fusion-tokens-0.0.4.tgz#b84c58e2de8e06d3e63c2c182da7e023ccfb50ec"
+fusion-tokens@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/fusion-tokens/-/fusion-tokens-0.0.5.tgz#71af057ab696046c43e89ca06dfe47cdbaeac6d8"
 
 gauge@~2.7.3:
   version "2.7.4"

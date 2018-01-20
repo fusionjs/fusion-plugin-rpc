@@ -4,24 +4,38 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// @flow
 /* eslint-env browser */
 
-import {FetchToken, createOptionalToken} from 'fusion-tokens';
 import {createPlugin} from 'fusion-core';
+import type {FusionPlugin} from 'fusion-core';
+import {FetchToken, createOptionalToken} from 'fusion-tokens';
+
 import {RPCHandlersToken} from './tokens';
 
-export const RPCRoutePrefixConfigToken = createOptionalToken(
+declare var __DEV__: boolean;
+
+export const RPCRoutePrefixConfigToken: ?string = createOptionalToken(
   'RPCRoutePrefixConfigToken',
   null
 );
 
+// TODO Web Platform | 2018-01-19 - Import Flow declaration for 'fetch' from libdef
+type Fetch = (
+  input: string | Request,
+  init?: RequestOptions
+) => Promise<Response>;
+
 class RPC {
-  constructor(fetch, prefix) {
+  fetch: *;
+  prefix: string;
+
+  constructor(fetch: Fetch, prefix: string) {
     this.fetch = fetch;
     this.prefix = prefix;
   }
 
-  request(rpcId, args) {
+  request(rpcId: string, args: *): Promise<*> {
     // TODO(#3) handle args instanceof FormData
     return this.fetch(`${this.prefix}/api/${rpcId}`, {
       method: 'POST',
@@ -42,7 +56,9 @@ class RPC {
   }
 }
 
-export default createPlugin({
+type RPCServiceFactory = () => RPC;
+type RPCPluginType = FusionPlugin<*, RPCServiceFactory>;
+const plugin: RPCPluginType = createPlugin({
   deps: {
     fetch: FetchToken,
     handlers: RPCHandlersToken,
@@ -66,3 +82,5 @@ export default createPlugin({
     return () => new RPC(fetch, prefix);
   },
 });
+
+export default plugin;

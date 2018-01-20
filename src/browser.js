@@ -20,7 +20,7 @@ export const RPCRoutePrefixConfigToken: ?string = createOptionalToken(
   null
 );
 
-// TODO Web Platform | 2018-01-19 - Import Flow declaration for 'fetch' from libdef
+// TODO(#54) Web Platform | 2018-01-19 - Import Flow declaration for 'fetch' from libdef
 type Fetch = (
   input: string | Request,
   init?: RequestOptions

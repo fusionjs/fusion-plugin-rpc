@@ -4,12 +4,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// @flow
+
 import {createPlugin} from 'fusion-core';
+import type {FusionPlugin} from 'fusion-core';
 import MissingHandlerError from './missing-handler-error';
 import {RPCHandlersToken} from './tokens';
 
 class RPC {
-  constructor(handlers) {
+  handlers: *;
+
+  constructor(handlers: any) {
     this.handlers = handlers;
   }
 
@@ -21,7 +26,9 @@ class RPC {
   }
 }
 
-export default createPlugin({
+type RPCServiceFactory = () => RPC;
+type RPCPluginType = FusionPlugin<*, RPCServiceFactory>;
+const plugin: RPCPluginType = createPlugin({
   deps: {
     handlers: RPCHandlersToken,
   },
@@ -29,3 +36,5 @@ export default createPlugin({
     return () => new RPC(handlers);
   },
 });
+
+export default plugin;

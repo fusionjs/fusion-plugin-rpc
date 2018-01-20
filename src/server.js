@@ -4,9 +4,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// @flow
 /* eslint-env node */
 
 import {createPlugin, memoize} from 'fusion-core';
+import type {Context, FusionPlugin} from 'fusion-core';
 import {UniversalEventsToken} from 'fusion-plugin-universal-events';
 import bodyparser from 'koa-bodyparser';
 import MissingHandlerError from './missing-handler-error';
@@ -20,7 +22,11 @@ function hasHandler(handlers, method) {
 }
 
 class RPC {
-  constructor(emitter, handlers, ctx) {
+  ctx: Context;
+  emitter: *;
+  handlers: *;
+
+  constructor(emitter: any, handlers: any, ctx: Context) {
     if (!ctx || !ctx.headers) {
       throw new Error('fusion-plugin-rpc requires `ctx`');
     }
@@ -29,7 +35,7 @@ class RPC {
     this.handlers = handlers;
   }
 
-  async request(method, args) {
+  async request(method: string, args: mixed) {
     const startTime = ms();
     const scopedEmitter = this.emitter.from(this.ctx);
     if (!hasHandler(this.handlers, method)) {
@@ -69,7 +75,9 @@ class RPC {
   }
 }
 
-export default createPlugin({
+type RPCServiceFactory = (ctx: Context) => RPC;
+type RPCPluginType = FusionPlugin<*, RPCServiceFactory>;
+const plugin: RPCPluginType = createPlugin({
   deps: {
     emitter: UniversalEventsToken,
     handlers: RPCHandlersToken,
@@ -149,7 +157,10 @@ export default createPlugin({
   },
 });
 
+/* Helper functions */
 function ms() {
   const [seconds, ns] = process.hrtime();
   return Math.round(seconds * 1000 + ns / 1e6);
 }
+
+export default plugin;

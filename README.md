@@ -42,12 +42,12 @@ export default () => {
   app.register(RPCHandlersToken, handlers);
   app.register(FetchToken, fetch);
 
-  app.register(createPlugin({
-    deps: { RPCFactory: RPCToken },
-    middleware: ({RPCFactory}) => (ctx, next) => {
+  app.middleware(
+    { RPCFactory: RPCToken },
+    ({RPCFactory}) => (ctx, next) => {
       RPCFactory(ctx).request('getUser', 1).then(console.log) // {some: 'data1'}
     }
-  });
+  );
   // ...
   return app;
 }

@@ -76,7 +76,7 @@ class RPC {
   }
 }
 
-type RPCServiceFactory = (ctx: Context) => RPC;
+type RPCServiceFactory = {from: (ctx: Context) => RPC};
 type RPCPluginType = FusionPlugin<*, RPCServiceFactory>;
 const plugin: RPCPluginType = createPlugin({
   deps: {

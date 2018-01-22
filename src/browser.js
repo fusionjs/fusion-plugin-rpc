@@ -79,7 +79,7 @@ const plugin: RPCPluginType = createPlugin({
         ? routePrefix // this hook is mostly for testing
         : window.__ROUTE_PREFIX__ || ''; // created by fusion-core/src/server
 
-    return () => new RPC(fetch, prefix);
+    return {from: () => new RPC(fetch, prefix)};
   },
 });
 

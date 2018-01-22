@@ -33,7 +33,7 @@ const plugin: RPCPluginType = createPlugin({
     handlers: RPCHandlersToken,
   },
   provides: ({handlers} = {}) => {
-    return () => new RPC(handlers);
+    return {from: () => new RPC(handlers)};
   },
 });
 

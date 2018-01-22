@@ -87,7 +87,9 @@ const plugin: RPCPluginType = createPlugin({
   provides: deps => {
     const {emitter, handlers} = deps;
 
-    return memoize(ctx => new RPC(emitter, handlers, ctx));
+    return {
+      from: memoize(ctx => new RPC(emitter, handlers, ctx)),
+    };
   },
 
   middleware: deps => {

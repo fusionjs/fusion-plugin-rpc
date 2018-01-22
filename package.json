@@ -3,7 +3,10 @@
 	"description": "Fetch data on the server and client with an RPC style interface.",
 	"version": "0.6.0",
 	"repository": "fusionjs/fusion-plugin-rpc",
-	"files": ["dist", "src"],
+	"files": [
+		"dist",
+		"src"
+	],
 	"main": "./dist/index.js",
 	"module": "./dist/index.es.js",
 	"browser": {

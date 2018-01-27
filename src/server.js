@@ -78,7 +78,7 @@ class RPC {
 
 type RPCServiceFactory = {from: (ctx: Context) => RPC};
 type RPCPluginType = FusionPlugin<*, RPCServiceFactory>;
-const plugin: RPCPluginType = createPlugin({
+const plugin: RPCPluginType = __NODE__ && createPlugin({
   deps: {
     emitter: UniversalEventsToken,
     handlers: RPCHandlersToken,

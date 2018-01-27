@@ -58,7 +58,7 @@ class RPC {
 
 type RPCServiceFactory = {from: () => RPC};
 type RPCPluginType = FusionPlugin<*, RPCServiceFactory>;
-const plugin: RPCPluginType = createPlugin({
+const plugin: RPCPluginType = __BROWSER__ && createPlugin({
   deps: {
     fetch: FetchToken,
     handlers: RPCHandlersToken,

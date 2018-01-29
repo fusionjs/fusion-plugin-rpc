@@ -22,7 +22,8 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "koa-bodyparser": "4.2.0"
+    "koa-bodyparser": "4.2.0",
+    "rollup": "0.55.1"
   },
   "devDependencies": {
     "babel-eslint": "8.2.1",
@@ -34,7 +35,7 @@
     "eslint-plugin-flowtype": "2.42.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-prettier": "2.5.0",
-    "eslint-plugin-react": "7.6.0",
+    "eslint-plugin-react": "7.6.1",
     "flow-bin": "0.64.0",
     "fusion-core": "0.3.0-5",
     "fusion-plugin-universal-events": "0.3.0",

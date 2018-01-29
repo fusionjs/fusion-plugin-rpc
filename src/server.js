@@ -79,6 +79,7 @@ class RPC {
 type RPCServiceFactory = {from: (ctx: Context) => RPC};
 type RPCPluginType = FusionPlugin<*, RPCServiceFactory>;
 const plugin: RPCPluginType =
+  // $FlowFixMe
   __NODE__ &&
   createPlugin({
     deps: {

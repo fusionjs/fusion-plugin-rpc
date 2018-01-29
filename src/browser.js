@@ -6,7 +6,6 @@
 
 // @flow
 /* eslint-env browser */
-
 import {createPlugin} from 'fusion-core';
 import type {FusionPlugin} from 'fusion-core';
 import {FetchToken, createOptionalToken} from 'fusion-tokens';
@@ -59,6 +58,7 @@ class RPC {
 type RPCServiceFactory = {from: () => RPC};
 type RPCPluginType = FusionPlugin<*, RPCServiceFactory>;
 const plugin: RPCPluginType =
+  // $FlowFixMe
   __BROWSER__ &&
   createPlugin({
     deps: {

@@ -10,10 +10,6 @@ import {createPlugin} from 'fusion-core';
 import type {FusionPlugin} from 'fusion-core';
 import {FetchToken, createOptionalToken} from 'fusion-tokens';
 
-import {RPCHandlersToken} from './tokens';
-
-declare var __DEV__: boolean;
-
 export const RPCRoutePrefixConfigToken: ?string = createOptionalToken(
   'RPCRoutePrefixConfigToken',
   null

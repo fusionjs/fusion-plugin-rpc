@@ -22,16 +22,14 @@ type Fetch = (
 
 class RPC {
   fetch: *;
-  prefix: string;
 
-  constructor(fetch: Fetch, prefix: string) {
+  constructor(fetch: Fetch) {
     this.fetch = fetch;
-    this.prefix = prefix;
   }
 
   request(rpcId: string, args: *): Promise<*> {
     // TODO(#3) handle args instanceof FormData
-    return this.fetch(`${this.prefix}/api/${rpcId}`, {
+    return this.fetch(`/api/${rpcId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -63,12 +61,7 @@ const plugin: RPCPluginType =
     provides: deps => {
       const {fetch = window.fetch, routePrefix} = deps;
 
-      const prefix =
-        routePrefix != null
-          ? routePrefix // this hook is mostly for testing
-          : window.__ROUTE_PREFIX__ || ''; // created by fusion-core/src/server
-
-      return {from: () => new RPC(fetch, prefix)};
+      return {from: () => new RPC(fetch)};
     },
   });
 

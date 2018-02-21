@@ -6,13 +6,9 @@
 
 // @flow
 /* eslint-env browser */
-import {createPlugin, createToken} from 'fusion-core';
-import type {FusionPlugin, Token} from 'fusion-core';
+import {createPlugin} from 'fusion-core';
+import type {FusionPlugin} from 'fusion-core';
 import {FetchToken} from 'fusion-tokens';
-
-export const RPCRoutePrefixConfigToken: Token<string> = createToken(
-  'RPCRoutePrefixConfigToken'
-);
 
 // TODO(#54) Web Platform | 2018-01-19 - Import Flow declaration for 'fetch' from libdef
 type Fetch = (
@@ -56,10 +52,9 @@ const plugin: RPCPluginType =
   createPlugin({
     deps: {
       fetch: FetchToken,
-      routePrefix: RPCRoutePrefixConfigToken.optional,
     },
     provides: deps => {
-      const {fetch = window.fetch, routePrefix} = deps;
+      const {fetch = window.fetch} = deps;
 
       return {from: () => new RPC(fetch)};
     },

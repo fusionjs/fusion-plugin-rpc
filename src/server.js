@@ -97,7 +97,7 @@ const plugin: RPCPluginType =
     },
 
     middleware: deps => {
-      const {emitter, handlers} = deps;
+      const {emitter, handlers, bodyParserOptions} = deps;
       const parseBody = bodyparser(bodyParserOptions);
 
       return async (ctx, next) => {

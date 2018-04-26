@@ -7,3 +7,4 @@
 import {createToken} from 'fusion-core';
 
 export const RPCHandlersToken = createToken('RPCHandlersToken');
+export const BodyParserOptionsToken = createToken('BodyParserOptionsToken');

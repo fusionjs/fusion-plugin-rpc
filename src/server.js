@@ -85,7 +85,7 @@ const plugin: RPCPluginType =
     deps: {
       emitter: UniversalEventsToken,
       handlers: RPCHandlersToken,
-      bodyParserOptions: BodyParserOptionsToken,
+      bodyParserOptions: BodyParserOptionsToken.optional,
     },
 
     provides: deps => {

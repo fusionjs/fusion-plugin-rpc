@@ -38,7 +38,7 @@ function mockRequest() {
     method: 'POST',
     url: '/api/test',
     headers: {
-      'Accept': 'text/plain'
+      Accept: 'text/plain',
     },
   });
   req.write(MOCK_JSON_PARAMS);
@@ -437,8 +437,8 @@ test('middleware - bodyparser options with very small jsonLimit', async t => {
     path: '/api/test',
     method: 'POST',
     request: {
-      is: (mineTypes) => mineTypes.some(mineType => mineType.includes('json'))
-    }
+      is: mineTypes => mineTypes.some(mineType => mineType.includes('json')),
+    },
   };
 
   const mockHandlers = {
@@ -465,7 +465,7 @@ test('middleware - bodyparser options with very small jsonLimit', async t => {
   const middleware = RPCPlugin.middleware({
     emitter: mockEmitter,
     handlers: mockHandlers,
-    bodyParserOptions: mockBodyParserOptions
+    bodyParserOptions: mockBodyParserOptions,
   });
   try {
     await middleware(mockCtx, () => Promise.resolve());
@@ -483,8 +483,8 @@ test('middleware - bodyparser options with default jsonLimit', async t => {
     path: '/api/test',
     method: 'POST',
     request: {
-      is: (mineTypes) => mineTypes.some(mineType => mineType.includes('json'))
-    }
+      is: mineTypes => mineTypes.some(mineType => mineType.includes('json')),
+    },
   };
 
   const mockHandlers = {
@@ -509,7 +509,7 @@ test('middleware - bodyparser options with default jsonLimit', async t => {
 
   const middleware = RPCPlugin.middleware({
     emitter: mockEmitter,
-    handlers: mockHandlers
+    handlers: mockHandlers,
   });
   try {
     await middleware(mockCtx, () => Promise.resolve());

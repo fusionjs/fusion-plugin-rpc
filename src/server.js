@@ -17,7 +17,7 @@ import {UniversalEventsToken} from 'fusion-plugin-universal-events';
 import MissingHandlerError from './missing-handler-error';
 import {BodyParserOptionsToken, RPCHandlersToken} from './tokens.js';
 import type {HandlerType} from './tokens.js';
-import type {RPCPluginType} from './types.js';
+import type {RPCPluginType, IEmitter} from './types.js';
 
 const statKey = 'rpc:method';
 
@@ -26,11 +26,9 @@ function hasHandler(handlers: HandlerType, method: string): boolean {
   return handlers.hasOwnProperty(method);
 }
 
-type ExtractReturnType = <V>(() => V) => V;
-
 class RPC {
   ctx: ?Context;
-  emitter: ?$Call<ExtractReturnType, typeof UniversalEventsToken>;
+  emitter: ?IEmitter;
   handlers: ?HandlerType;
   fetch: ?*;
 

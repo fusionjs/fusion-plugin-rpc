@@ -8,18 +8,15 @@
 
 import {createPlugin} from 'fusion-core';
 import type {Context} from 'fusion-core';
-import {UniversalEventsToken} from 'fusion-plugin-universal-events';
 
 import MissingHandlerError from './missing-handler-error';
 import {RPCHandlersToken} from './tokens';
 import type {HandlerType} from './tokens.js';
-import type {RPCPluginType} from './types.js';
-
-type ExtractReturnType = <V>(() => V) => V;
+import type {RPCPluginType, IEmitter} from './types.js';
 
 class RPC {
   ctx: ?Context;
-  emitter: ?$Call<ExtractReturnType, typeof UniversalEventsToken>;
+  emitter: ?IEmitter;
   handlers: ?HandlerType;
   fetch: ?*;
 

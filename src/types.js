@@ -28,3 +28,5 @@ export type RPCServiceType = {
 };
 
 export type RPCPluginType = FusionPlugin<*, RPCServiceType>;
+
+export type IEmitter = $Call<ExtractReturnType, typeof UniversalEventsToken>;

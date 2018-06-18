@@ -143,12 +143,16 @@ const plugin =
               const error =
                 e instanceof ResponseError
                   ? e
-                  : new Error('UnknownError - Use ResponseError for more detailed error messages');
+                  : new Error(
+                      'UnknownError - Use ResponseError for more detailed error messages'
+                    );
               ctx.body = {
                 status: 'failure',
                 data: {
                   message: error.message,
+                  // $FlowFixMe
                   code: error.code,
+                  // $FlowFixMe
                   meta: error.meta,
                 },
               };

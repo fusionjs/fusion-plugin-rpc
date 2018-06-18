@@ -8,12 +8,10 @@
 
 export default class ResponseError extends Error {
   code: ?string;
-  message: ?string;
-  meta: ?object;
+  meta: ?Object;
 
-  constructor(message: ?string) {
+  constructor(message: string) {
     super(message);
-    this.message = message;
     this.code = null;
     this.meta = null;
     Error.captureStackTrace(this, ResponseError);

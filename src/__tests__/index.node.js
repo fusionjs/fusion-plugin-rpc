@@ -580,8 +580,8 @@ test('middleware - valid endpoint failure with standard error', async t => {
 
   try {
     await middleware(mockCtx, () => Promise.resolve());
-    // $FlowFixMe
     t.equal(
+      // $FlowFixMe
       mockCtx.body.data.message,
       'UnknownError - Use ResponseError for more detailed error messages'
     );

@@ -293,7 +293,11 @@ test('middleware - invalid endpoint', async t => {
       t.equal(type, 'rpc:error');
       t.equal(payload.method, 'valueOf');
       t.equal(payload.origin, 'browser');
-      t.equal(payload.error.message, 'Missing RPC handler for valueOf', 'emits error in payload');
+      t.equal(
+        payload.error.message,
+        'Missing RPC handler for valueOf',
+        'emits error in payload'
+      );
     },
     from() {
       return this;
@@ -577,7 +581,10 @@ test('middleware - valid endpoint failure with standard error', async t => {
   try {
     await middleware(mockCtx, () => Promise.resolve());
     // $FlowFixMe
-    t.equal(mockCtx.body.data.message, 'UnknownError - Use ResponseError for more detailed error messages');
+    t.equal(
+      mockCtx.body.data.message,
+      'UnknownError - Use ResponseError for more detailed error messages'
+    );
     // $FlowFixMe
     t.equal(mockCtx.body.data.code, undefined);
     // $FlowFixMe

@@ -140,23 +140,22 @@ const plugin =
                 });
               }
             } catch (e) {
-              e =
+              const error =
                 e instanceof ResponseError
                   ? e
                   : new Error('UnknownError - Use ResponseError for more detailed error messages');
-              const error = {
-                message: e.message,
-                code: e.code,
-                meta: e.meta,
-              };
               ctx.body = {
                 status: 'failure',
-                data: error,
+                data: {
+                  message: error.message,
+                  code: error.code,
+                  meta: error.meta,
+                },
               };
               if (scopedEmitter) {
                 scopedEmitter.emit(statKey, {
                   method,
-                  error: e,
+                  error: error,
                   status: 'failure',
                   origin: 'browser',
                   timing: ms() - startTime,

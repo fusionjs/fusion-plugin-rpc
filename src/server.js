@@ -159,7 +159,7 @@ const plugin =
               if (scopedEmitter) {
                 scopedEmitter.emit(statKey, {
                   method,
-                  error: error,
+                  error,
                   status: 'failure',
                   origin: 'browser',
                   timing: ms() - startTime,

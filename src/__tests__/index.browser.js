@@ -76,7 +76,7 @@ test('success status request w/args and header', t => {
         t.equals(typeof rpc.request, 'function', 'has method');
         t.ok(rpc.request('test') instanceof Promise, 'has right return type');
         rpc
-          .request('test', { args: 1 }, { 'test-header': 'header value' })
+          .request('test', {args: 1}, {'test-header': 'header value'})
           .then(([url, options]) => {
             t.equals(url, '/api/test', 'has right url');
             t.equals(options.method, 'POST', 'has right http method');
@@ -104,8 +104,6 @@ test('success status request w/args and header', t => {
   t.true(wasResolved, 'plugin was resolved');
   t.end();
 });
-
-
 
 test('failure status request', t => {
   const mockFetchAsFailure = () =>

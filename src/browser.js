@@ -8,11 +8,11 @@
 
 /* eslint-env browser */
 
-import { createPlugin } from "fusion-core";
-import { FetchToken } from "fusion-tokens";
-import type { Fetch } from "fusion-tokens";
+import {createPlugin} from 'fusion-core';
+import {FetchToken} from 'fusion-tokens';
+import type {Fetch} from 'fusion-tokens';
 
-import type { RPCPluginType } from "./types.js";
+import type {RPCPluginType} from './types.js';
 
 class RPC {
   ctx: ?*;
@@ -26,23 +26,23 @@ class RPC {
 
   request(rpcId: string, args: *, headers: ?{[string]: string}): Promise<*> {
     if (!this.fetch) {
-      throw new Error("fusion-plugin-rpc requires `fetch`");
+      throw new Error('fusion-plugin-rpc requires `fetch`');
     }
     const fetch = this.fetch;
 
     // TODO(#3) handle args instanceof FormData
     return fetch(`/api/${rpcId}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        ...(headers || {})
+        'Content-Type': 'application/json',
+        ...(headers || {}),
       },
-      body: JSON.stringify(args || {})
+      body: JSON.stringify(args || {}),
     })
       .then(r => r.json())
       .then(args => {
-        const { status, data } = args;
-        if (status === "success") {
+        const {status, data} = args;
+        if (status === 'success') {
           return data;
         } else {
           return Promise.reject(data);
@@ -53,13 +53,13 @@ class RPC {
 
 const plugin: RPCPluginType = createPlugin({
   deps: {
-    fetch: FetchToken
+    fetch: FetchToken,
   },
   provides: deps => {
-    const { fetch = window.fetch } = deps;
+    const {fetch = window.fetch} = deps;
 
-    return { from: () => new RPC(fetch) };
-  }
+    return {from: () => new RPC(fetch)};
+  },
 });
 
 export default ((__BROWSER__ && plugin: any): RPCPluginType);

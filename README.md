@@ -112,7 +112,7 @@ export default () => {
 
 #### Registration API
 
-##### RPC
+##### `RPC`
 
 ```js
 import RPC from 'fusion-plugin-rpc';

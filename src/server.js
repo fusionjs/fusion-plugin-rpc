@@ -95,8 +95,7 @@ class RPC {
   }
 }
 
-const plugin =
-  __NODE__ &&
+const pluginFactory: () => RPCPluginType = () =>
   createPlugin({
     deps: {
       emitter: UniversalEventsToken,
@@ -115,6 +114,10 @@ const plugin =
 
     middleware: deps => {
       const {emitter, handlers, bodyParserOptions} = deps;
+      if (!handlers)
+        throw new Error('Middle handlers registered to RPCHandlersToken');
+      if (!emitter)
+        throw new Error('Missing emitter registered to UniversalEventsToken');
       const parseBody = bodyparser(bodyParserOptions);
 
       return async (ctx, next) => {
@@ -195,4 +198,4 @@ function ms() {
   return Math.round(seconds * 1000 + ns / 1e6);
 }
 
-export default ((plugin: any): RPCPluginType);
+export default ((__NODE__ && pluginFactory: any): RPCPluginType);

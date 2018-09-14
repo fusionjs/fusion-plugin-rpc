@@ -51,15 +51,16 @@ class RPC {
   }
 }
 
-const plugin: RPCPluginType = createPlugin({
-  deps: {
-    fetch: FetchToken,
-  },
-  provides: deps => {
-    const {fetch = window.fetch} = deps;
+const pluginFactory: () => RPCPluginType = () =>
+  createPlugin({
+    deps: {
+      fetch: FetchToken,
+    },
+    provides: deps => {
+      const {fetch = window.fetch} = deps;
 
-    return {from: () => new RPC(fetch)};
-  },
-});
+      return {from: () => new RPC(fetch)};
+    },
+  });
 
-export default ((__BROWSER__ && plugin: any): RPCPluginType);
+export default ((__BROWSER__ && pluginFactory(): any): RPCPluginType);

@@ -31,7 +31,7 @@ export type RPCScopedServiceType = {
   handlers: ?HandlerType,
   fetch: ?Fetch,
 
-  request(method: string, args: mixed): Promise<*>,
+  request<TArgs, TResult>(method: string, args: TArgs): Promise<TResult>,
 };
 
 export type RPCServiceType = {

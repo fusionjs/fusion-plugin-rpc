@@ -6,15 +6,15 @@ import ResponseError from '../response-error';
 
 test('mockRpcHandlers', async t => {
   t.plan(4);
-  const rpcFixtures = {
-    GET_USER_SUCCESS: {
+  const rpcFixtures = [
+    {
       getUser: {
         firstName: 'John',
         lastName: 'Doe',
         uuid: 123,
       },
     },
-    UPDATE_USER: {
+    {
       updateUser: [
         {
           args: [{firstName: 'Jane'}],
@@ -30,14 +30,11 @@ test('mockRpcHandlers', async t => {
         },
       ],
     },
-  };
+  ];
 
   const onMockRpcSpy = sinon.spy();
 
-  const mockRpcHandlers = getMockRpcHandlers(
-    [rpcFixtures.GET_USER_SUCCESS, rpcFixtures.UPDATE_USER],
-    onMockRpcSpy
-  );
+  const mockRpcHandlers = getMockRpcHandlers(rpcFixtures, onMockRpcSpy);
 
   const user = await mockRpcHandlers.getUser();
 

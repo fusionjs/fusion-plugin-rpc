@@ -254,15 +254,15 @@ For example:
 ```js
 import {getMockRpcHandlers, ResponseError} from 'fusion-plugin-rpc';
 
-const rpcFixtures = {
-  GET_USER_SUCCESS: {
+const rpcFixtures = [
+  {
     getUser: {
       firstName: 'John',
       lastName: 'Doe',
       uuid: 123,
     },
   },
-  UPDATE_USER: {
+  {
     updateUser: [{
       args: [{firstName: 'Jane'}],
       response: {
@@ -275,12 +275,9 @@ const rpcFixtures = {
       response: new ResponseError('Username cant be empty'),
     }]
   },
-};
+];
 
-const mockRpcHandlers = getMockRpcHandlers([
-  rpcFixtures.GET_USER_SUCCESS,
-  rpcFixtures.UPDATE_USER,
-]);
+const mockRpcHandlers = getMockRpcHandlers(rpcFixtures);
 
 const user = await mockRpcHandlers.getUser();
 

@@ -19,5 +19,5 @@ export {BodyParserOptionsToken, RPCToken, RPCHandlersToken} from './tokens';
 
 export {default as getMockRpcHandlers} from './mock-rpc-handlers';
 
-export type RPCType = RPCDepsType;
-export type {RPCServiceType};
+export type {RPCDepsType};
+export type RPCType = RPCServiceType;

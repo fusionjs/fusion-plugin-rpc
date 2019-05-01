@@ -7,7 +7,7 @@
  */
 
 export default class ResponseError extends Error {
-  code: ?string;
+  code: ?string | ?number;
   meta: ?Object;
 
   constructor(message: string) {
